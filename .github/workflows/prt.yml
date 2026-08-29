@@ -1,0 +1,13 @@
+name: prt
+on:
+  pull_request_target:
+    branches: [staging]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: show gate opened
+        run: echo "GATE_OPENED secret_len=${#S} github_ref=$GITHUB_REF"
+        env:
+          S: ${{ secrets.PROD_SECRET }}

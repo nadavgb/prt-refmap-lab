@@ -1,0 +1,13 @@
+name: pushctl
+on:
+  push:
+    branches: [staging]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: necessity control
+        run: echo "CONTROL_RAN secret_len=${#S} github_ref=$GITHUB_REF"
+        env:
+          S: ${{ secrets.PROD_SECRET }}
